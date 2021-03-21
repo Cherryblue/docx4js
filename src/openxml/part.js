@@ -156,7 +156,11 @@ export default class Part{
 		let data=this.doc.getDataPart(this.normalizePath(targetName))
 		switch(type.split("/").pop()){
 			case "oleObject":
-				return OLE.parse(data)
+				try{
+					return OLE.parse(data)
+				}catch(error){
+					return data
+				}
 			default:
 				return data
 		}
